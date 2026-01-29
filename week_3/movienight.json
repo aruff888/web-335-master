@@ -1,0 +1,33 @@
+{
+  "movies": [
+    {
+      "_id": "m001",
+      "movieName": "Inception",
+      "genre": "Science Fiction",
+      "ratings": [
+        {
+          "_id": "r101",
+          "ratingScore": 5,
+          "viewerId": "v001"
+        },
+        {
+          "_id": "r102",
+          "ratingScore": 4,
+          "viewerId": "v002"
+        }
+      ]
+    }
+  ],
+  "viewers": [
+    {
+      "_id": "v001",
+      "firstName": "Amanda",
+      "lastName": "Ruff"
+    },
+    {
+      "_id": "v002",
+      "firstName": "Jordan",
+      "lastName": "Miller"
+    }
+  ]
+}
