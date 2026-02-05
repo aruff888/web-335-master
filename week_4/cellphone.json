@@ -1,0 +1,35 @@
+{
+  "users": [
+    {
+      "_id": "u1001",
+      "firstName": "Amanda",
+      "lastName": "Ruff",
+      "devices": [
+        {
+          "_id": "d2001",
+          "deviceName": "iPhone 14",
+          "deviceType": "Smartphone",
+          "charger_id": "c3001"
+        },
+        {
+          "_id": "d2002",
+          "deviceName": "Samsung Galaxy Tab S8",
+          "deviceType": "Tablet",
+          "charger_id": "c3002"
+        }
+      ]
+    }
+  ],
+  "chargers": [
+    {
+      "_id": "c3001",
+      "chargerType": "Lightning",
+      "voltage": "5V"
+    },
+    {
+      "_id": "c3002",
+      "chargerType": "USB-C",
+      "voltage": "9V"
+    }
+  ]
+}
