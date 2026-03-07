@@ -1,35 +1,74 @@
-/**
-============================================
-; Title: whatabook_queries.js
-; Author: Amanda Ruff & Jarren Bess
-; Date: 03 March 2026
-; Description: Query demonstrations for the WhatABook database
-;===========================================
-*/
-
-// Switch to whatABook database
-use whatABook;
+// ============================================
+// File: theBookBytes-whatABook.js
+// Author: Amanda Ruff & Jarren Bess
+// Date: 03 March 2026
+// Description: MongoDB Queries for WhatABook Project
+// ============================================
 
 // ==============================
+// Author: Amanda
 // Display all books
 // ==============================
-
-db.books.find().pretty();
+db.books.find({});
 
 // ==============================
 // Display books by genre
+// Author: Amanda
 // ==============================
-
-db.books.find({ genre: "Fiction" }).pretty();
+db.books.find({genre: "Fiction"});
 
 // ==============================
 // Display books by author
+// Author: Amanda
 // ==============================
-
-db.books.find({ author: "Harper Lee" }).pretty();
+db.books.find({author: "Harper Lee"});
 
 // ==============================
 // Display book by bookId
+// Author: Amanda
 // ==============================
+db.books.findOne({bookId: "b1004"});
 
-db.books.find({ bookId: "b1001" }).pretty();
+// ==============================
+// Display a wish list by customerId
+// Author: Jarren
+// ==============================
+db.customers.aggregate([
+  {$match: {customerId: "c1003"}},
+  {
+    $lookup: {
+      from: "wishlistitems",
+      localField: "customerId",
+      foreignField: "customerId",
+      as: "wishlist",
+    },
+  },
+  {
+    $project: {
+      "wishlist._id": 0,
+      "wishlist.customerId": 0,
+    },
+  },
+]);
+
+// ==============================
+// Add books to a customer's wishlist
+// Author: Jarren
+// ==============================
+db.wishlistitems.updateOne(
+  {customerId: "c1001"},
+  {
+    $addToSet: {items: {$each: ["b1005", "b1006"]}},
+  },
+);
+
+// ==============================
+// Remove a book from a customer's wishlist
+// Author: Jarren
+// ==============================
+db.wishlistitems.updateOne(
+  {customerId: "c1001"},
+  {
+    $pull: {items: "b1005"},
+  },
+);
